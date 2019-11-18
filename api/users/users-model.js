@@ -12,7 +12,8 @@ async function find() {
 }
 
 function findById(id){
-    return db("students").select("id", "name")
+    return db("students").first()
+    .select("id", "name")
     .where({ id })
 }
 

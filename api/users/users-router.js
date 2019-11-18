@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", mw.validateStudentId, (req, res) => {
   const id = req.params.id;
   Users.findById(id)
     .then(student => {
@@ -34,7 +34,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", mw.validateStudent, (req, res) => {
-    const { name }  = req.body;
+    const { name }  = req.student;
     const user = { name }
     Users.add(user)
     .then(saved => {
@@ -47,7 +47,7 @@ router.post("/", mw.validateStudent, (req, res) => {
       });
   });
 
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", mw.validateStudentId, (req, res) => {
     const id = req.params.id;
     Users
       .remove(id)

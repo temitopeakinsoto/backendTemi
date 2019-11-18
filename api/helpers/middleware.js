@@ -1,5 +1,8 @@
+const Users = require("../users/users-model");
+
 module.exports = {
-    validateStudent
+    validateStudent,
+    validateStudentId
   };
 
 function validateStudent(req, res, next) {
@@ -15,3 +18,21 @@ function validateStudent(req, res, next) {
     next();
   }
 }
+
+function validateStudentId(req, res, next) {
+    Users
+      .findById(req.params.id)
+      .then(student => {
+        if (student) {
+          next();
+        } else {
+          res.status(400).json({ message: "invalid student id" });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({
+          message: `Something terrible happend while checking student id: ${error.message}`
+        });
+      });
+  }
+  
