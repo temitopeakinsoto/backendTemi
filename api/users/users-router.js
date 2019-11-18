@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const mw = require('../helpers/middleware');
 const Users = require("./users-model.js");
 
 router.get("/", (req, res) => {
@@ -32,7 +33,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", mw.validateStudent, (req, res) => {
     const { name }  = req.body;
     const user = { name }
     Users.add(user)
