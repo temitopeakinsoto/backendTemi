@@ -32,4 +32,18 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+    const { name }  = req.body;
+    const user = { name }
+    Users.add(user)
+    .then(saved => {
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: `An error was encountered while creating this user: ${error.message}`
+        });
+      });
+  });
+
 module.exports = router;
