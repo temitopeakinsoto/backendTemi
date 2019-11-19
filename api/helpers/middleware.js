@@ -2,8 +2,29 @@ const Users = require("../students/students-model");
 
 module.exports = {
   validateStudent,
-  validateStudentId
+  validateStudentId,
+  validateNewUser
 };
+
+function validateNewUser(req, res, next) {
+    let user = req.body;
+    if (!user) {
+      res.status(400).json({ message: "missing user data" });
+    } else if (!user.username) {
+      res
+        .status(400)
+        .json({ message: "missing required username field for a new user record" });
+    }
+    else if (!user.password) {
+        res
+          .status(400)
+          .json({ message: "missing required password field for a new user record" });
+      } else {
+      req.user = user;
+      next();
+    }
+  }
+  
 
 function validateStudent(req, res, next) {
   let student = req.body;
