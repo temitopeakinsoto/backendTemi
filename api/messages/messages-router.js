@@ -4,8 +4,8 @@ const mw = require('../helpers/middleware');
 
 router.get("/", (req, res) => {
     Messages.find()
-    .then(students => {
-      res.status(200).json(students);
+    .then(messages => {
+      res.status(200).json(messages);
     })
     .catch(error => {
       res.status(500).json({
@@ -14,16 +14,17 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+// An endpoint for getting all messages of a student with specified id
+router.get("/students/:id", (req, res) => {
     const id = req.params.id;
     Messages.findById(id)
-      .then(msg => {
-        if (msg) {
-          res.status(200).json(msg);
+      .then(studentMsgs => {
+        if (studentMsgs) {
+          res.status(200).json(studentMsgs);
         } else {
           res
             .status(401)
-            .json({ message: "There is no user with the specified id" });
+            .json({ message: "There is no messages for student with the specified id" });
         }
       })
       .catch(error => {
