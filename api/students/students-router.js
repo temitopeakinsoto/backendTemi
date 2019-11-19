@@ -33,6 +33,20 @@ router.get("/:id", mw.validateStudentId, (req, res) => {
     });
 });
 
+router.get("/:id/projects", mw.validateStudentId, (req, res) => {
+  const id = req.params.id;
+  Users
+    .getStudentProjects(id)
+    .then(projects => {
+      res.status(200).json(projects);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: `encountered an error while retrieving the projects for the specified user ${error.message}`
+      });
+    });
+});
+
 router.post("/", mw.validateStudent, (req, res) => {
     const { name }  = req.student;
     const user = { name }
