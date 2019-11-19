@@ -14,9 +14,9 @@ async function find() {
 }
 
 function findById(id){
-    return db("messages as m")
+    return db("messages as m").first()
     .join("users as u", "u.id", "m.user_id")
     .join("students as s", "s.id", "m.student_id")
     .select("u.username","s.name", "m.timestamp", "text")
-    .where({ id })
+    .where({ "m.id": id })
 }
