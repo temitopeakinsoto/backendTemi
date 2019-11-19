@@ -1,7 +1,5 @@
 exports.seed = function(knex) {
-  return knex("studentsTprojects")
-    .truncate()
-    .then(function() {
+
       return knex("studentsTprojects").insert([
         {
           student_id: 1,
@@ -16,5 +14,5 @@ exports.seed = function(knex) {
           project_id: 3
         }
       ]);
-    });
+
 };

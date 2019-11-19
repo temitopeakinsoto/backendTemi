@@ -1,7 +1,5 @@
 exports.seed = function(knex) {
-  return knex("projects")
-    .truncate()
-    .then(function() {
+  
       return knex("projects").insert([
         {
           id: 1,
@@ -16,5 +14,5 @@ exports.seed = function(knex) {
           project_name: "Write a new constitution"
         }
       ]);
-    });
+
 };

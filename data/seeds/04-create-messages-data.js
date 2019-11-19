@@ -5,9 +5,7 @@ let date2 = new Date(2019, 10, 06, 03, 0, 0);
 let date3 = new Date(2019, 11, 07, 04, 0, 0);
 
 exports.seed = function(knex) {
-  return knex("messages")
-    .truncate()
-    .then(function() {
+
       return knex("messages").insert([
         {
           id: 1,
@@ -50,5 +48,5 @@ exports.seed = function(knex) {
           timestamp: JSON.stringify(date3)
         }
       ]);
-    });
+
 };
