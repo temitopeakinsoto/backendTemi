@@ -17,11 +17,11 @@ exports.up = function(knex) {
       })
       .createTable("projects", tbl => {
         tbl.increments();
-        tbl.string("name", 128);
+        tbl.string("project_name", 128);
       })
       .createTable("messages", tbl => {
         tbl.increments();
-        tbl.datetime('timestamp');
+        tbl.string('timestamp', 128).defaultTo(JSON.stringify(new Date()));
         tbl
           .integer("user_id")
           .unsigned()
@@ -37,7 +37,7 @@ exports.up = function(knex) {
           .inTable("students");
         tbl.string("text", 1024);
         tbl
-          .boolean("send to self")
+          .boolean("send_to_self")
           .defaultTo(false)
           .notNullable();
       })
