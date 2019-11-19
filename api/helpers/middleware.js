@@ -3,7 +3,8 @@ const Users = require("../students/students-model");
 module.exports = {
   validateStudent,
   validateStudentId,
-  validateNewUser
+  validateNewUser,
+  validateMessage
 };
 
 function validateNewUser(req, res, next) {
@@ -57,3 +58,33 @@ function validateStudentId(req, res, next) {
       });
     });
 }
+
+function validateMessage(req, res, next) {
+  let newMessage = req.body;
+  if (!newMessage) {
+    res.status(400).json({ message: "missing user data" });
+  } else if (!newMessage.text) {
+    res
+      .status(400)
+      .json({
+        message: "missing required text field for a new user record"
+      });
+  } else if (!newMessage.timestamp) {
+    res
+      .status(400)
+      .json({
+        message: "missing required timestamp field for a new user record"
+      });
+  } 
+  else if (!newMessage.user_id) {
+    res
+      .status(400)
+      .json({
+        message: "missing required user_id field for a new user record"
+      });
+  } else {
+    req.newMessage = newMessage;
+    next();
+  }
+}
+
