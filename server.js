@@ -4,6 +4,7 @@ const cors = require('cors');
 
 
 const studentsRouter = require('./api/students/students-router.js');
+const messagesRouter = require('./api/messages/messages-router.js');
 const authRouter = require('./api/auth/auth-router');
 
 const server = express();
@@ -15,5 +16,6 @@ server.use(cors());
 
 server.use('/api/auth', authRouter);
 server.use('/api/students', studentsRouter);
+server.use('/api/messages', messagesRouter);
 
 module.exports = server;
