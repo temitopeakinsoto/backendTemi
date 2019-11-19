@@ -31,7 +31,6 @@ exports.up = function(knex) {
         tbl
           .integer("student_id")
           .unsigned()
-          .defaultTo(true)
           .notNullable()
           .references("id")
           .inTable("students");
