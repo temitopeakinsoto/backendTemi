@@ -62,7 +62,7 @@ function validateStudentId(req, res, next) {
 function validateMessage(req, res, next) {
   let newMessage = req.body;
   if (!newMessage) {
-    res.status(400).json({ message: "missing user data" });
+    res.status(400).json({ message: "missing message data" });
   } else if (!newMessage.text) {
     res
       .status(400)
