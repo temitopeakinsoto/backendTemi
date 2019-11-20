@@ -5,5 +5,7 @@ module.exports = {
 }
 
 async function find() {
-    return await db("projects").select("id", "project_name")
+    return await db("projectsTdeadlines as ptd")
+    .join("projects as p", "p.id", "ptd.project_id")
+    .select("p.project_name","ptd.deadline", "ptd.deadline_type")
 }
