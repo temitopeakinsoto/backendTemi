@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const mw = require('./api/helpers/middleware');
 
 
 const studentsRouter = require('./api/students/students-router.js');
@@ -16,8 +17,8 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/auth', authRouter);
-server.use('/api/students', studentsRouter);
-server.use('/api/messages', messagesRouter);
-server.use('/api/projects', ProjectsRouter);
+server.use('/api/students', mw.restricted, studentsRouter);
+server.use('/api/messages', mw.restricted, messagesRouter);
+server.use('/api/projects', mw.restricted, ProjectsRouter);
 
 module.exports = server;
