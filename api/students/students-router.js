@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: `Error retrieving the list of all users: ${error.message}`
+        message: `Error retrieving the list of all students: ${error.message}`
       });
     });
 });
@@ -28,7 +28,7 @@ router.get("/:id", mw.validateStudentId, (req, res) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: `Error retrieving the list of all users: ${error.message}`
+        message: `Error retrieving the list of all student: ${error.message}`
       });
     });
 });
@@ -42,7 +42,7 @@ router.get("/:id/projects", mw.validateStudentId, (req, res) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: `encountered an error while retrieving the projects for the specified user ${error.message}`
+        message: `encountered an error while retrieving the projects for the specified student ${error.message}`
       });
     });
 });
@@ -56,7 +56,7 @@ router.post("/", mw.validateStudent, (req, res) => {
       })
       .catch(error => {
         res.status(500).json({
-          error: `An error was encountered while creating this user: ${error.message}`
+          error: `An error was encountered while creating this student: ${error.message}`
         });
       });
   });
