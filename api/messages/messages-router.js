@@ -35,7 +35,8 @@ router.get("/students/:id", (req, res) => {
   });
 
   router.post("/", mw.validateMessage, (req, res) => {
-    const { text, timestamp, user_id, student_id }  = req.newMessage;
+    const user_id = req.decodedToken.user_id;
+    const { text, timestamp, student_id }  = req.newMessage;
     const message = { text, timestamp, user_id, student_id};
     message.send_to_self = (req.newMessage.student_id) ? false : true;
 
