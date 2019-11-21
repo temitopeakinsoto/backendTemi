@@ -94,13 +94,7 @@ function validateMessage(req, res, next) {
         message: "missing required timestamp field for a new user record"
       });
   } 
-  else if (!newMessage.user_id) {
-    res
-      .status(400)
-      .json({
-        message: "missing required user_id field for a new user record"
-      });
-  } else {
+   else {
     req.newMessage = newMessage;
     next();
   }
