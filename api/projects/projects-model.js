@@ -1,11 +1,14 @@
 const db = require('../../config/db-config');
 
 module.exports = {
-    find    
+    find,
+    findDeadlines    
 }
 
 async function find() {
-    return await db("projectsTdeadlines as ptd")
-    .join("projects as p", "p.id", "ptd.project_id")
-    .select("p.project_name","ptd.deadline", "ptd.deadline_type")
+    return await db("projects").select("id", "project_name");
+}
+
+function findDeadlines() {
+    return db("projectsTdeadlines")
 }

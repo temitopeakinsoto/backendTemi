@@ -4,7 +4,7 @@ const db = require("./config/db-config");
 
 let incompleteUser = { username: "fakeUser" };
 let user = { username: "tops", password: "1234" };
-let student = { name: "studentx" };
+let student = { name: "temi" };
 
 
 describe("CHECK DB ENVIRONMENT", () => {
