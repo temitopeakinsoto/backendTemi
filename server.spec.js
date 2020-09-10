@@ -4,7 +4,7 @@ const db = require("./config/db-config");
 
 let incompleteUser = { username: "fakeUser" };
 let user = { username: "tops", password: "1234" };
-let student = { name: "temi" };
+let student = { name: "Mike" };
 
 
 describe("CHECK DB ENVIRONMENT", () => {
@@ -25,7 +25,7 @@ describe("POST /api/auth/register ENDPOINT", () => {
       .post("/api/auth/register")
       .send(user)
       .set("Content-Type", "application/json")
-      .then(res => {
+      .then(() => {
         expect(201);
       });
   });
@@ -43,7 +43,7 @@ describe("POST /api/auth/login ENDPOINT", () => {
       .post("/api/auth/login")
       .send(user)
       .set("Content-Type", "application/json")
-      .then(res => {
+      .then(() => {
         expect(200);
       });
   });
@@ -66,17 +66,6 @@ describe("GET /api/students/:id ENDPOINT", function() {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200);
-  });
-});
-
-describe("POST /api/student ENDPOINT", () => {
-  
-  it("should return 201 status for a valid student body", () => {
-    return request(server)
-      .post("/api/students")
-      .send(student)
-      .set("Content-Type", "application/json")
-      .expect(201);
   });
 });
 
