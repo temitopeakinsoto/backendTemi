@@ -1,10 +1,10 @@
 const request = require("supertest");
 const server = require("./server");
-const db = require("./config/db-config");
+// const db = require("./config/db-config");
 
 let incompleteUser = { username: "fakeUser" };
 let user = { username: "tops", password: "1234" };
-let student = { name: "Mike" };
+// let student = { name: "Mike" };
 
 
 describe("CHECK DB ENVIRONMENT", () => {

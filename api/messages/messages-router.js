@@ -52,3 +52,29 @@ router.get("/students/:id", (req, res) => {
   });
 
 module.exports = router;
+
+
+const getBySupportId = (supportType) => (dispatch) => {
+  dispatch({ type: GET_BY_SUPPORT_ID_START });
+  const sessionId = localStorage.getItem("sessionId");
+  axios
+    .get(
+      `https://gateway.hydrogenhr.com/hris/support/ticketNumber?ticketNumber=${supportType}`,
+      { headers: { "Content-Type": "application/json", sessionId } }
+    )
+    .then((res) => {
+      console.log(`IDD,res.data.data`);
+      dispatch({ type: GET_BY_SUPPORT_ID, payload: res.data.data });
+    })
+    .catch(dispatch({ type: GET_BY_SUPPORT_ID_FAIL }));
+};
+
+const ticketsInDb = getBySupportId(ticket_id);
+if(ticketsInDb){
+// display ticket(S)
+}else{
+  // return a error message/component
+}
+
+const ticketsInDb = getBySupportId(ticket_id);
+{ticketsInDb ? <DisplayTickets>: </displayError> }
